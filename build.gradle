@@ -2,7 +2,6 @@ plugins {
 	id 'org.springframework.boot' version '2.3.3.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
-	id 'checkstyle'
 	id 'pmd'
 	id "com.github.spotbugs" version "4.3.0"
 	id 'jacoco'
@@ -17,19 +16,10 @@ bootJar {
 	archiveFileName = 'martian-robots.jar'
 }
 
-group = 'com.ecommerce'
+group = 'com.gnovoa.robots'
 sourceCompatibility = JavaVersion.VERSION_14
 targetCompatibility = JavaVersion.VERSION_14
 
-checkstyle {
-	configFile = file('codequality/checkstyle/checkstyle.xml')
-}
-tasks.withType(Checkstyle) {
-	reports {
-		xml.enabled false
-		html.enabled true
-	}
-}
 
 // configure HTML report
 spotbugsMain {
