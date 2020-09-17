@@ -2,9 +2,6 @@ plugins {
 	id 'org.springframework.boot' version '2.3.3.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
-	id 'pmd'
-	id "com.github.spotbugs" version "4.3.0"
-	id 'jacoco'
 }
 
 repositories {
@@ -21,47 +18,19 @@ sourceCompatibility = JavaVersion.VERSION_14
 targetCompatibility = JavaVersion.VERSION_14
 
 
-// configure HTML report
-spotbugsMain {
-	reports {
-		html {
-			enabled = true
-			stylesheet = 'fancy-hist.xsl'
-		}
-	}
-}
-
-spotbugsTest {
-	reports {
-		html {
-			enabled = true
-			stylesheet = 'fancy-hist.xsl'
-		}
-	}
-}
-
-
-jacocoTestReport {
-	reports {
-		xml.enabled false
-		csv.enabled false
-		html.enabled = true
-		html.destination file("${buildDir}/reports/jacoco")
-	}
-}
-
-
-jacocoTestReport {
-	dependsOn test
-}
 
 test {
 	useJUnitPlatform()
-	finalizedBy jacocoTestReport
 }
+
 dependencies {
+
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	//Swagger
+	implementation "org.springdoc:springdoc-openapi-ui:1.4.4"
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

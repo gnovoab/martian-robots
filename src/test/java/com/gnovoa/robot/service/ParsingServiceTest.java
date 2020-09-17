@@ -36,15 +36,6 @@ public class ParsingServiceTest {
             "LLFFFLFLFL";
 
 
-    private transient  String inputTextWrong =
-            "5 3\n" +
-            "1 B E\n" +
-            "RFRFRFRF\n" +
-            "3 2 N\n" +
-            "FRRFLLFFRRFLL\n" +
-            "0 3 W\n" +
-            "LLFFFLFLFL";
-
     @Test
     void parseInputTest() {
         Input input = parsingService.parseInput(inputText);
@@ -83,6 +74,54 @@ public class ParsingServiceTest {
 
     @Test
     void parseInputTestWrong() {
+
+        String inputTextWrong =
+                "5 3\n" +
+                        "1 B E\n" +
+                        "RFRFRFRF\n" +
+                        "3 2 N\n" +
+                        "FRRFLLFFRRFLL\n" +
+                        "0 3 W\n" +
+                        "LLFFFLFLFL";
+
+
+        Assertions.assertThrows(ParseException.class, () -> {
+            parsingService.parseInput(inputTextWrong);
+        });
+    }
+
+
+    @Test
+    void CoordinatesBiggerThan50() {
+
+        String inputTextWrong =
+                "5 3\n" +
+                        "1 1 E\n" +
+                        "RFRFRFRF\n" +
+                        "3 51 N\n" +
+                        "FRRFLLFFRRFLL\n" +
+                        "0 3 W\n" +
+                        "LLFFFLFLFL";
+
+        Assertions.assertThrows(ParseException.class, () -> {
+            parsingService.parseInput(inputTextWrong);
+        });
+    }
+
+
+
+    @Test
+    void InstructionsBiggerThan100() {
+
+        String inputTextWrong =
+                "5 3\n" +
+                        "1 1 E\n" +
+                        "RFRFRFRF\n" +
+                        "3 5 N\n" +
+                        "FRRFLLFFRRFLLFRRFLLFFRRFLLFRRFLLFFRRFLLFRRFLLFFRRFLLFRRFLLFFRRFLLFRRFLLFFRRFLLFRRFLLFFRRFLLFRRFLLFFRRFLLFRRFLLFFRRFLL\n" +
+                        "0 3 W\n" +
+                        "LLFFFLFLFL";
+
         Assertions.assertThrows(ParseException.class, () -> {
             parsingService.parseInput(inputTextWrong);
         });

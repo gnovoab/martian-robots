@@ -3,6 +3,7 @@
 package com.gnovoa.robot.service.impl;
 
 //Imports
+import com.gnovoa.robot.domain.constants.Instruction;
 import com.gnovoa.robot.domain.model.Coordinate;
 import com.gnovoa.robot.domain.model.RobotInstruction;
 import com.gnovoa.robot.domain.model.RobotPosition;
@@ -12,7 +13,6 @@ import com.gnovoa.robot.service.ParsingService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
@@ -58,6 +58,9 @@ public class ParsingServiceImpl implements ParsingService {
 
                 //Set the robot instructions
                 else {
+                    if(fields[0].length() > Instruction.MAX_NUMBER_PERMITTED) {
+                        throw new ParseException("length of instructions exceed the limit of 100, ["+fields[0]+"] ");
+                    }
                     robotInstruction.setInstructions(fields[0].chars().mapToObj(e -> (char)e).collect(Collectors.toList()));
                     input.getRobotsInstructions().add(robotInstruction);
                 }
@@ -65,6 +68,7 @@ public class ParsingServiceImpl implements ParsingService {
 
             return input;
         }
+
         catch (Exception e){
             throw new ParseException(e.getMessage(), e);
         }
