@@ -11,6 +11,11 @@ public class RobotPosition {
     private Coordinate coordinate;
     private char orientation;
 
+    public RobotPosition(Coordinate coordinate, char orientation) {
+        this.coordinate = coordinate;
+        this.orientation = orientation;
+    }
+
     //Getters and Setters
 
     public Coordinate getCoordinate() {
