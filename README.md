@@ -54,6 +54,7 @@ should be printed after the position and orientation.
 ## Samples
 
 ###Input
+
     5 3
     1 1 E
     RFRFRFRF
@@ -66,6 +67,7 @@ should be printed after the position and orientation.
 
 
 ### Output
+
     11E
     33NLOST 
     23S
