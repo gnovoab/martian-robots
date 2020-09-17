@@ -4,9 +4,11 @@ package com.gnovoa.robot.service;
 
 import com.gnovoa.robot.domain.constants.Instruction;
 import com.gnovoa.robot.domain.constants.Orientation;
+import com.gnovoa.robot.domain.model.Coordinate;
 import com.gnovoa.robot.domain.model.RobotInstruction;
+import com.gnovoa.robot.domain.model.RobotLog;
+import com.gnovoa.robot.domain.model.RobotPosition;
 import com.gnovoa.robot.domain.rest.Input;
-import com.gnovoa.robot.exception.IllegalOrientationStateException;
 import com.gnovoa.robot.exception.ParseException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,6 +37,11 @@ public class ParsingServiceTest {
             "FRRFLLFFRRFLL\n" +
             "0 3 W\n" +
             "LLFFFLFLFL";
+
+    private transient String outputText =
+            "1 1 E\n" +
+            "3 3 N LOST\n" +
+            "2 3 S";
 
 
     @Test
@@ -125,5 +133,25 @@ public class ParsingServiceTest {
         Assertions.assertThrows(ParseException.class, () -> {
             parsingService.parseInput(inputTextWrong);
         });
+    }
+
+
+    @Test
+    void testOutput() {
+
+        //Generate Object
+        RobotLog robotLog1 = new RobotLog(new RobotPosition(new Coordinate(1,1), Orientation.EAST), false);
+        RobotLog robotLog2 = new RobotLog(new RobotPosition(new Coordinate(3,3), Orientation.NORTH), true);
+        RobotLog robotLog3 = new RobotLog(new RobotPosition(new Coordinate(2,3), Orientation.SOUTH), false);
+
+        List<RobotLog> logs = new ArrayList<>();
+        logs.add(robotLog1);
+        logs.add(robotLog2);
+        logs.add(robotLog3);
+
+
+        String output = parsingService.generateOutput(logs);
+
+        Assertions.assertEquals(outputText, output);
     }
 }

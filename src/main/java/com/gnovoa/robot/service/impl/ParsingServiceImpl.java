@@ -6,13 +6,14 @@ package com.gnovoa.robot.service.impl;
 import com.gnovoa.robot.domain.constants.Instruction;
 import com.gnovoa.robot.domain.model.Coordinate;
 import com.gnovoa.robot.domain.model.RobotInstruction;
+import com.gnovoa.robot.domain.model.RobotLog;
 import com.gnovoa.robot.domain.model.RobotPosition;
 import com.gnovoa.robot.domain.rest.Input;
 import com.gnovoa.robot.exception.ParseException;
 import com.gnovoa.robot.service.ParsingService;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -72,7 +73,18 @@ public class ParsingServiceImpl implements ParsingService {
         catch (Exception e){
             throw new ParseException(e.getMessage(), e);
         }
+    }
 
+    @Override
+    public String generateOutput(List<RobotLog> logs) {
 
+        StringBuilder output = new StringBuilder();
+
+        for (RobotLog log:logs) {
+            output.append(log.getPosition().getCoordinate().getX() + " " +log.getPosition().getCoordinate().getY() + " " + log.getPosition().getOrientation());
+            output.append((log.isRobotLost()) ? " LOST" + System.getProperty("line.separator") : System.getProperty("line.separator"));
+        }
+
+        return output.toString().substring(0, output.length()-1);
     }
 }
