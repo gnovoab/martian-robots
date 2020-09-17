@@ -8,16 +8,16 @@ package com.gnovoa.robot.domain;
 public class RobotPosition {
 
     //Fields
-    private GridCoordinate coordinate;
+    private Coordinate coordinate;
     private char orientation;
 
     //Getters and Setters
 
-    public GridCoordinate getCoordinate() {
+    public Coordinate getCoordinate() {
         return coordinate;
     }
 
-    public void setCoordinate(GridCoordinate coordinate) {
+    public void setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;
     }
 

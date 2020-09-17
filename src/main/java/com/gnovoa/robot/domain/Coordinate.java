@@ -5,7 +5,7 @@ package com.gnovoa.robot.domain;
 /**
  * Class that represents the coordinates ona  grid
  */
-public class GridCoordinate {
+public class Coordinate {
     private int x;
     private int y;
 
@@ -14,7 +14,7 @@ public class GridCoordinate {
      * @param x
      * @param y
      */
-    public GridCoordinate(int x, int y) {
+    public Coordinate(int x, int y) {
         this.x = x;
         this.y = y;
     }
