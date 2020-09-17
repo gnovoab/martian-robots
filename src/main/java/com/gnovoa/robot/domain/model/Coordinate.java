@@ -1,6 +1,6 @@
 
 //Namesapce
-package com.gnovoa.robot.domain;
+package com.gnovoa.robot.domain.model;
 
 /**
  * Class that represents the coordinates ona  grid

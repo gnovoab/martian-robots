@@ -1,6 +1,6 @@
 
 //Namespace
-package com.gnovoa.robot.domain;
+package com.gnovoa.robot.domain.model;
 
 /**
  * Class that represents robot positiomn

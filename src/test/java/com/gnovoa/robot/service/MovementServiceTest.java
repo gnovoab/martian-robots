@@ -3,7 +3,7 @@
 package com.gnovoa.robot.service;
 
 //Imports
-import com.gnovoa.robot.domain.Coordinate;
+import com.gnovoa.robot.domain.model.Coordinate;
 import com.gnovoa.robot.domain.constants.Orientation;
 import com.gnovoa.robot.exception.IllegalOrientationStateException;
 import org.junit.jupiter.api.Assertions;

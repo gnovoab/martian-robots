@@ -3,8 +3,7 @@
 package com.gnovoa.robot.service.impl;
 
 //Imports
-import com.gnovoa.robot.domain.Coordinate;
-import com.gnovoa.robot.domain.RobotPosition;
+import com.gnovoa.robot.domain.model.Coordinate;
 import com.gnovoa.robot.domain.constants.Orientation;
 import com.gnovoa.robot.exception.IllegalOrientationStateException;
 import com.gnovoa.robot.service.MovementService;
